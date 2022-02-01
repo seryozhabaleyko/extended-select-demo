@@ -6,3 +6,5 @@ export { Tree } from './Tree';
 export type { TreeProps } from './Tree';
 export { IconButton } from './IconButton';
 export type { IconButtonProps } from './IconButton';
+export { Checkbox } from './Checkbox';
+export type { CheckboxProps } from './Checkbox';
