@@ -48,7 +48,13 @@ function App() {
 
   return (
     <div className={styles.root}>
-      <Search placeholder="Search" value={search} onChange={onSearchChange} />
+      <Search
+        className={styles.search}
+        placeholder="Search"
+        value={search}
+        onChange={onSearchChange}
+      />
+
       <Tree
         checkable
         defaultExpandedKeys={['0-0-0', '0-0-1']}
