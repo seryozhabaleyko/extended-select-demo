@@ -15,6 +15,7 @@ import { TreeItem, TreeView } from '@mui/lab';
 import React, { useEffect } from 'react';
 import { ExtendedSelectDialogProps, TreeNode } from './types';
 import { makeStyles } from '@mui/styles';
+import { filter } from './helpers';
 
 const getTreeNodeIds = (child: TreeNode) => {
     const result: string[] = [child.id];
@@ -120,8 +121,8 @@ export const ExtendedSelectDialog: React.FC<ExtendedSelectDialogProps> = ({
             );
         };
 
-        return treeData.map(renderTreeNode);
-    }, [selected, treeData]);
+        return filter(treeData, search).map(renderTreeNode);
+    }, [selected, treeData, search]);
 
     return (
         <Dialog
