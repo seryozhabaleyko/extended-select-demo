@@ -35,6 +35,9 @@ const useStyles = makeStyles(
         dialogPaper: {
             width: '100%',
         },
+        iconContainer: {
+            maxWidth: 0,
+        },
     }),
     { name: 'ExtendedSelectDialog' }
 );
@@ -95,6 +98,10 @@ export const ExtendedSelectDialog: React.FC<ExtendedSelectDialogProps> = ({
             event.stopPropagation();
         };
 
+        const isTreeData = treeData
+            .map((treeNode) => Boolean(treeNode.children))
+            .includes(true);
+
         const renderTreeNode = (treeNode: TreeNode) => {
             const checked = selected.includes(treeNode.id);
 
@@ -115,6 +122,11 @@ export const ExtendedSelectDialog: React.FC<ExtendedSelectDialogProps> = ({
                             onClick={onCheckboxOrLabelClick}
                         />
                     }
+                    classes={{
+                        iconContainer: isTreeData
+                            ? undefined
+                            : styles.iconContainer,
+                    }}
                 >
                     {treeNode.children?.map(renderTreeNode)}
                 </TreeItem>

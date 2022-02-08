@@ -112,6 +112,12 @@ const useStyles = makeStyles(
         root: {
             maxWidth: 600,
         },
+        avatarRoot: {
+            backgroundColor: 'red',
+        },
+        avatarImg: {
+            height: '100%',
+        },
     }),
     { name: 'App' }
 );

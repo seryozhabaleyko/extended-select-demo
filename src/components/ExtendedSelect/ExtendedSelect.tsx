@@ -67,6 +67,7 @@ export const ExtendedSelect: React.FC<ExtendedSelectProps> = ({
                         value={selected.join(', ')}
                         onClick={onOpen}
                         fullWidth
+                        placeholder="Select..."
                     />
                 </Grid>
             </Grid>
