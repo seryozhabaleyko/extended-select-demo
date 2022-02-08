@@ -6,12 +6,14 @@ import { ExtendedSelectProps } from './types';
 import { ExtendedSelectDialog } from './ExtendedSelectDialog';
 
 const useStyles = makeStyles(
-    () => ({
+    {
         root: {
             marginBottom: 32,
         },
-    }),
-    { name: 'ExtendedSelect' }
+    },
+    {
+        name: 'ExtendedSelect',
+    }
 );
 
 export const ExtendedSelect: React.FC<ExtendedSelectProps> = ({

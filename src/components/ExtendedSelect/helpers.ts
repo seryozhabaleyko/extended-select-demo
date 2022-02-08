@@ -20,3 +20,16 @@ export const filter = (treeNode: TreeNode[], searchQuery: string) => {
 
     return treeNode.reduce(getNodes, []);
 };
+
+export const getTreeNodeIds = (child: TreeNode) => {
+    const result: string[] = [child.id];
+
+    const callback = (child: TreeNode) => {
+        result.push(child.id);
+        child.children?.forEach(callback);
+    };
+
+    child.children?.forEach(callback);
+
+    return result;
+};

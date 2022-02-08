@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import {
     Box,
     Button,
@@ -12,34 +13,22 @@ import {
 } from '@mui/material';
 import { ArrowBack, ChevronRight, ExpandMore } from '@mui/icons-material';
 import { TreeItem, TreeView } from '@mui/lab';
-import React, { useEffect } from 'react';
 import { ExtendedSelectDialogProps, TreeNode } from './types';
 import { makeStyles } from '@mui/styles';
-import { filter } from './helpers';
-
-const getTreeNodeIds = (child: TreeNode) => {
-    const result: string[] = [child.id];
-
-    const callback = (child: TreeNode) => {
-        result.push(child.id);
-        child.children?.forEach(callback);
-    };
-
-    child.children?.forEach(callback);
-
-    return result;
-};
+import { filter, getTreeNodeIds } from './helpers';
 
 const useStyles = makeStyles(
-    () => ({
+    {
         dialogPaper: {
             width: '100%',
         },
         iconContainer: {
             maxWidth: 0,
         },
-    }),
-    { name: 'ExtendedSelectDialog' }
+    },
+    {
+        name: 'ExtendedSelectDialog',
+    }
 );
 
 export const ExtendedSelectDialog: React.FC<ExtendedSelectDialogProps> = ({

@@ -108,18 +108,15 @@ export const lineData: TreeNode[] = [
 ];
 
 const useStyles = makeStyles(
-    () => ({
+    {
         root: {
             maxWidth: 600,
+            padding: '0 20px',
         },
-        avatarRoot: {
-            backgroundColor: 'red',
-        },
-        avatarImg: {
-            height: '100%',
-        },
-    }),
-    { name: 'App' }
+    },
+    {
+        name: 'App',
+    }
 );
 
 function App() {
