@@ -5,6 +5,7 @@
     "type": "git",
     "url": "git+https://github.com/seryozhabaleyko/extended-select-demo.git"
   },
+  "homepage": "https://seryozhabaleyko.github.io/extended-select-demo",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
@@ -33,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "predeploy": "yarn build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
