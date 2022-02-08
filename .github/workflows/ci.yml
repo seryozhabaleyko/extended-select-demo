@@ -22,7 +22,7 @@ jobs:
           node-version: 16.x
 
       - name: Install NPM packages
-        run: npm ci
+        run: npm i
         # similar to npm install, for automated environments
 
       - name: Build project
