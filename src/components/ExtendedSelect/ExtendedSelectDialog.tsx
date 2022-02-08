@@ -134,7 +134,7 @@ export const ExtendedSelectDialog: React.FC<ExtendedSelectDialogProps> = ({
         };
 
         return filter(treeData, search).map(renderTreeNode);
-    }, [selected, treeData, search]);
+    }, [treeData, search, selected, styles.iconContainer]);
 
     return (
         <Dialog

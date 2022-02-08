@@ -1,27 +1,59 @@
-name: CI
+name: CI/CD # workflow name
 
-on:
-  push:
-    branches:
-      - main
+on: # attribute determines how workflow gets triggered
+  push: # triggers on a`push` to the `main` branch
+    branches: [ main ]
+  workflow_dispatch: # triggers manually
 
 jobs:
-  build-test-deploy:
+  build: # job 1 identifier
+    name: Build
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Clone repo & checkout code
         uses: actions/checkout@v2
-      - name: Set-up Node
-        uses: actions/setup-node@v1
+        # this action allows the runner to access your code by cloning it
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2.4.0
+        # installs and sets up Node environment in our runner
         with:
-          node-version: "10.x"
-      - run: npm install
-      - run: npm run build
-      - run: npm test
-      - name: Deploy
-        uses: crazy-max/ghaction-github-pages@v1
+          node-version: 16.x
+
+      - name: Install NPM packages
+        run: npm ci
+        # similar to npm install, for automated environments
+
+      - name: Build project
+        run: npm run build # command to build project
+
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v2
+        # uploads build files to be accessible across jobs
+        with:
+          name: production
+          path: ./build
+
+  deploy: # job 2 identifier
+    name: Deploy
+    needs: build
+    # the build job must succeed in order to run this job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        # downloads the uploaded build files
+        with:
+          name: production
+          path: ./build
+
+      - name: Deploy to Github pages
+        uses: crazy-max/ghaction-github-pages@v2
+        # action to deploy to GitHub Pages
         with:
           target_branch: gh-pages
-          build_dir: build
+          build_dir: ./build
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # default secret for auth
